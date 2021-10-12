@@ -1,0 +1,569 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace Matching_game
+{
+    public partial class Level4 : Form
+    {
+        Stopwatch oSW = new Stopwatch();
+        //Variables
+        int hitRed = 0;
+        Random location = new Random(); //Select a random value from X and Y list and assign a new location to each card
+        List<Point> points = new List<Point>(); //List to hold card points
+        public Level4()
+        {
+            InitializeComponent();
+        }
+
+        private void Level4_Load(object sender, EventArgs e)
+        {
+            oSW.Start();
+            timer3.Enabled = true;
+            foreach (PictureBox picture in CardsHolder.Controls)
+            {
+                picture.Enabled = false;
+                points.Add(picture.Location);
+            }
+            foreach (PictureBox picture in CardsHolder.Controls)
+            {
+                int next = location.Next(points.Count);
+                Point p = points[next];
+                picture.Location = p;
+                points.Remove(p);
+
+            }
+            timer2.Start();
+            timer1.Start();
+            pictureBox1.Image = Properties.Resources.Rojo;
+            pictureBox2.Image = Properties.Resources.Rojo;
+            pictureBox3.Image = Properties.Resources.Rojo;
+            pictureBox4.Image = Properties.Resources.Rojo;
+            pictureBox5.Image = Properties.Resources.Rojo;
+            pictureBox6.Image = Properties.Resources.Rojo;
+            pictureBox7.Image = Properties.Resources.BlancoRes;
+            pictureBox8.Image = Properties.Resources.BlancoRes;
+            pictureBox9.Image = Properties.Resources.BlancoRes;
+            pictureBox10.Image = Properties.Resources.BlancoRes;
+            pictureBox11.Image = Properties.Resources.BlancoRes;
+            pictureBox12.Image = Properties.Resources.BlancoRes;
+            pictureBox13.Image = Properties.Resources.BlancoRes;
+            pictureBox14.Image = Properties.Resources.BlancoRes;
+            pictureBox15.Image = Properties.Resources.BlancoRes;
+            pictureBox16.Image = Properties.Resources.BlancoRes;
+            pictureBox17.Image = Properties.Resources.BlancoRes;
+            pictureBox18.Image = Properties.Resources.BlancoRes;
+            pictureBox19.Image = Properties.Resources.BlancoRes;
+            pictureBox20.Image = Properties.Resources.BlancoRes;
+            pictureBox21.Image = Properties.Resources.BlancoRes;
+            pictureBox22.Image = Properties.Resources.BlancoRes;
+            pictureBox23.Image = Properties.Resources.BlancoRes;
+            pictureBox24.Image = Properties.Resources.BlancoRes;
+            pictureBox25.Image = Properties.Resources.BlancoRes;
+            pictureBox26.Image = Properties.Resources.BlancoRes;
+            pictureBox27.Image = Properties.Resources.BlancoRes;
+            pictureBox28.Image = Properties.Resources.BlancoRes;
+            pictureBox29.Image = Properties.Resources.BlancoRes;
+            pictureBox30.Image = Properties.Resources.BlancoRes;
+            pictureBox31.Image = Properties.Resources.BlancoRes;
+            pictureBox32.Image = Properties.Resources.BlancoRes;
+            pictureBox33.Image = Properties.Resources.BlancoRes;
+            pictureBox34.Image = Properties.Resources.BlancoRes;
+            pictureBox35.Image = Properties.Resources.BlancoRes;
+            pictureBox36.Image = Properties.Resources.BlancoRes;
+        }
+
+        #region Timers
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            foreach (PictureBox picture in CardsHolder.Controls)
+            {
+                picture.Enabled = true;
+                picture.Cursor = Cursors.Hand;
+                picture.Image = Properties.Resources.BlancoRes;
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            int timer = Convert.ToInt32(label2.Text);
+            timer = timer - 1;
+            label2.Text = Convert.ToString(timer);
+
+            if (timer == 0)
+            {
+                timer2.Stop();
+            }
+        }
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            Form3 f3 = new Form3();
+            TimeSpan ts = new TimeSpan(0, 0, 0, 0, (int)oSW.ElapsedMilliseconds);
+            txtSeg.Text = ts.Seconds.ToString().Length < 2 ? "0" + ts.Seconds.ToString() : ts.Seconds.ToString();
+            //MessageBox.Show(Convert.ToString(Time.timeMin) + " " + Convert.ToString(Time.timeSeg));
+            Time.resSeg = 59 - Time.timeSeg;
+            if (Convert.ToInt32(txtSeg.Text) == Time.resSeg)
+            {
+                this.Hide();
+                //Form3 f8 = new Form3();
+                //f8.ShowDialog();
+                this.Close();
+            }
+        }
+        #endregion Timers
+
+        #region Cards
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Properties.Resources.Rojo;
+            hitRed += 1;
+            if (hitRed == 6)
+            {
+                timer3.Enabled = false;
+                Dato.score += 150;
+                Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+                this.Hide();
+                Form3 f3 = new Form3();
+                f3.ShowDialog();
+                this.Close();
+
+
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Properties.Resources.Rojo;
+            hitRed += 1;
+            if (hitRed == 6)
+            {
+                timer3.Enabled = false;
+                Dato.score += 150;
+                Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+                this.Hide();
+                Form3 f3 = new Form3();
+                f3.ShowDialog();
+                this.Close();
+
+
+            }
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            pictureBox3.Image = Properties.Resources.Rojo;
+            hitRed += 1;
+            if (hitRed == 6)
+            {
+                timer3.Enabled = false;
+                Dato.score += 150;
+                Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+                this.Hide();
+                Form3 f3 = new Form3();
+                f3.ShowDialog();
+                this.Close();
+
+
+            }
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            pictureBox4.Image = Properties.Resources.Rojo;
+            hitRed += 1;
+            if (hitRed == 6)
+            {
+                timer3.Enabled = false;
+                Dato.score += 150;
+                Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+                this.Hide();
+                Form3 f3 = new Form3();
+                f3.ShowDialog();
+                this.Close();
+
+
+            }
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            pictureBox5.Image = Properties.Resources.Rojo;
+            hitRed += 1;
+            if (hitRed == 6)
+            {
+                timer3.Enabled = false;
+                Dato.score += 150;
+                Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+                this.Hide();
+                Form3 f3 = new Form3();
+                f3.ShowDialog();
+                this.Close();
+
+
+            }
+
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            pictureBox6.Image = Properties.Resources.Rojo;
+            hitRed += 1;
+            if (hitRed == 6)
+            {
+                timer3.Enabled = false;
+                Dato.score += 150;
+                Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+                this.Hide();
+                Form3 f3 = new Form3();
+                f3.ShowDialog();
+                this.Close();
+
+
+            }
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox7.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox8.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox9.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox10.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox11.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox12_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox12.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox13_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox13.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox14_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox14.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox15_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox15.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox16_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox16.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox17_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox17.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox18_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox18.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox19_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox19.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox20_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox20.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox21_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox21.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox22_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox22.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox23_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox23.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close(); ;
+        }
+
+        private void pictureBox24_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox24.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox25_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox25.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox26_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox26.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox27_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox27.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox28_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox28.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox29_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox29.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox30_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox30.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox31_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox31.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox32_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox32.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox33_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox33.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox34_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox34.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+
+        }
+
+        private void pictureBox35_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox35.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox36_Click(object sender, EventArgs e)
+        {
+            timer3.Enabled = false;
+            pictureBox36.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            this.Close();
+        }
+        #endregion Cards
+
+
+    }
+}
