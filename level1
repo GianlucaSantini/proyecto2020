@@ -1,0 +1,242 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace Matching_game
+{
+    public partial class GameWindow : Form
+    {
+
+
+        //Variables
+        Stopwatch oSW = new Stopwatch();
+        int hitRed = 0; //Cuantos cuadrados rojos fueron acertados
+        Random location = new Random(); //Selleciona un valor random de la lista points y asigna una nueva posicion a cada carta
+        List<Point> points = new List<Point>(); //Lista para mantener los puntos de la carta
+        
+
+        public GameWindow()
+        {
+            InitializeComponent();
+        }
+
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GameWindow_Load(object sender, EventArgs e)
+        {
+            oSW.Stop();
+            oSW.Start(); //Comenzamos el reloj
+            timer3.Enabled = false;
+            timer3.Enabled = true;  //Empieza el timer3
+            
+            foreach(PictureBox picture in CardsHolder.Controls)
+            {
+                picture.Enabled = false; //Apenas empieza el juego, no se puede "clickear" las cartas
+                points.Add(picture.Location); //Agrega a la lista cada posicion de la carta
+            }
+
+            foreach (PictureBox picture in CardsHolder.Controls)
+            {
+                int next = location.Next(points.Count);
+                Point p = points[next];
+                picture.Location = p;
+                points.Remove(p);
+
+            }
+
+            timer2.Start(); //Empieza el timer2
+            timer1.Start(); //Empieza el timer1
+
+            //Asignamos a cada pictureBox su color inicial
+            pictureBox1.Image = Properties.Resources.Rojo;  
+            pictureBox2.Image = Properties.Resources.Rojo;
+            pictureBox3.Image = Properties.Resources.Rojo;
+            pictureBox4.Image = Properties.Resources.BlancoRes;
+            pictureBox5.Image = Properties.Resources.BlancoRes;
+            pictureBox6.Image = Properties.Resources.BlancoRes;
+            pictureBox7.Image = Properties.Resources.BlancoRes;
+            pictureBox8.Image = Properties.Resources.BlancoRes;
+            picturebox9.Image = Properties.Resources.BlancoRes;
+            
+
+
+        }
+        #region Timers
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //Una vez que el timer1 llega a los 3 segundos entramos a esta funicion 
+            timer1.Stop();  //paramos el timer1
+            foreach (PictureBox picture in CardsHolder.Controls)
+            {
+                picture.Enabled = true; //Habilitamos todas las cartas
+                picture.Cursor = Cursors.Hand;  //Cuando pasanmos el mouse por las cartas, aparace una mano en el cursor
+                picture.Image = Properties.Resources.BlancoRes; //Hacemos que todas las cartas se vuelvan blancas
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            //Una vez que el timer2 llega al segundo entra a esta funcion
+            int timer = Convert.ToInt32(label2.Text);   // timer es igual al texto del label2 convertido a int
+            timer = timer-1;                            
+            label2.Text = Convert.ToString(timer);  // el texto de label2 es igual a la variable timer convertida a string
+
+            if (timer == 0)     // si timer es igual a 0 el timer2 se detiene
+            {
+                timer2.Stop();
+            }
+        }
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            //Cuando el timer3 llega al segundo entra a esta funcion
+            trueLevel2 f2 = new trueLevel2();
+            TimeSpan ts = new TimeSpan(0, 0, 0, 0, (int)oSW.ElapsedMilliseconds);   
+            txtSeg.Text = ts.Seconds.ToString().Length < 2 ? "0" + ts.Seconds.ToString() : ts.Seconds.ToString(); //El texto de txtSeg es igual a los segundos transcurridos
+            if (Convert.ToDouble(txtSeg.Text) == 59)    //Si el texto de txtSeg es igual a 59
+            {
+                oSW.Stop();     //El rejol se detiene
+                timer3.Enabled = false;     //Timer3 se detiene
+                this.Hide();       //Oculatamos esta pantalla
+                Form3 f8 = new Form3(); 
+                f8.ShowDialog();    //Abrimos form3
+                this.Close();   //Cerramos esta pantalla
+            }   
+
+        }
+        #endregion Timers
+
+        #region Cards
+        private void picturebox9_Click(object sender, EventArgs e)
+        {
+            picturebox9.Image = Properties.Resources.BlancoRes;  //Cuando una carta es "clickeada" vuelve a su color original.
+            Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            //Cuando la carta es blanca, si es tocada pasa al nivel 2 (truelevel2)
+            this.Hide();
+            trueLevel2 f2 = new trueLevel2();
+            f2.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Properties.Resources.Rojo;
+            hitRed += 1;    //Como es roja, cuando es "clickeada" aumentamos el contador + 1
+            if (hitRed == 3) //Si el contador es igual a 3 (Osea que ya todos los rojos fueron "clickeados")
+            {
+                Dato.score += 150;      //Aumentamos el score + 150
+                Time.timeSeg = Convert.ToInt32(txtSeg.Text);    //timeSeg va a ser igual al texto que este en txtSeg
+                //Pasamos al siguente nivel
+                this.Hide();   
+                trueLevel2 f2 = new trueLevel2();
+                f2.ShowDialog();
+                this.Close();
+            }
+
+
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Properties.Resources.Rojo;
+            hitRed += 1;    
+            if (hitRed == 3)
+            {
+                Dato.score += 150;
+                Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+                this.Hide();
+                trueLevel2 f2 = new trueLevel2();
+                f2.ShowDialog();
+                this.Close();
+
+
+            }
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            pictureBox3.Image = Properties.Resources.Rojo;
+            hitRed += 1;
+            if (hitRed == 3)
+            {
+                Dato.score += 150;
+                Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+                this.Hide();
+                trueLevel2 f2 = new trueLevel2();
+                f2.ShowDialog();
+                this.Close();
+
+
+            }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            pictureBox4.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            trueLevel2 f2 = new trueLevel2();
+            f2.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            pictureBox5.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            trueLevel2 f2 = new trueLevel2();
+            f2.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            pictureBox6.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            trueLevel2 f2 = new trueLevel2();
+            f2.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            pictureBox7.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            trueLevel2 f2 = new trueLevel2();
+            f2.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+            pictureBox8.Image = Properties.Resources.BlancoRes;
+            Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            this.Hide();
+            trueLevel2 f2 = new trueLevel2();
+            f2.ShowDialog();
+            this.Close();
+        }
+        #endregion Cards
+
+
+    }
+}
