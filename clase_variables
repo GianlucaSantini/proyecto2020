@@ -1,0 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Matching_game
+{
+    public class Dato
+    {
+         static public int score;
+    }
+    public class Time
+    {
+        static public int timeSeg;
+        static public int resSeg;
+    }
+}
