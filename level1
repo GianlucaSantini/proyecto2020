@@ -41,8 +41,8 @@ namespace Matching_game
         private void GameWindow_Load(object sender, EventArgs e)
         {
             oSW.Stop();
-            oSW.Start(); //Comenzamos el reloj
             timer3.Enabled = false;
+            oSW.Start(); //Comenzamos el reloj
             timer3.Enabled = true;  //Empieza el timer3
             
             foreach(PictureBox picture in CardsHolder.Controls)
@@ -108,7 +108,7 @@ namespace Matching_game
             trueLevel2 f2 = new trueLevel2();
             TimeSpan ts = new TimeSpan(0, 0, 0, 0, (int)oSW.ElapsedMilliseconds);   
             txtSeg.Text = ts.Seconds.ToString().Length < 2 ? "0" + ts.Seconds.ToString() : ts.Seconds.ToString(); //El texto de txtSeg es igual a los segundos transcurridos
-            if (Convert.ToDouble(txtSeg.Text) == 59)    //Si el texto de txtSeg es igual a 59
+            if (Convert.ToDouble(txtSeg.Text) >= 58)    //Si el texto de txtSeg es mayor o igual a 58
             {
                 oSW.Stop();     //El rejol se detiene
                 timer3.Enabled = false;     //Timer3 se detiene
@@ -125,12 +125,14 @@ namespace Matching_game
         private void picturebox9_Click(object sender, EventArgs e)
         {
             picturebox9.Image = Properties.Resources.BlancoRes;  //Cuando una carta es "clickeada" vuelve a su color original.
-            Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            Time.timeSeg = Convert.ToInt32(txtSeg.Text);    // La variable timeSeg va a ser igual texto de txtSeg cuando se apreto la carta
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;     // Desabilitamos timer3
             //Cuando la carta es blanca, si es tocada pasa al nivel 2 (truelevel2)
-            this.Hide();
+            this.Hide();    //Oculatamos esta pantalla
             trueLevel2 f2 = new trueLevel2();
-            f2.ShowDialog();
-            this.Close();
+            f2.ShowDialog();    //Abrimos trueLevel2
+            this.Close();   //Cerramos esta pantalla
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -141,6 +143,8 @@ namespace Matching_game
             {
                 Dato.score += 150;      //Aumentamos el score + 150
                 Time.timeSeg = Convert.ToInt32(txtSeg.Text);    //timeSeg va a ser igual al texto que este en txtSeg
+                oSW.Stop();     //El rejol se detiene
+                timer3.Enabled = false;
                 //Pasamos al siguente nivel
                 this.Hide();   
                 trueLevel2 f2 = new trueLevel2();
@@ -160,6 +164,8 @@ namespace Matching_game
             {
                 Dato.score += 150;
                 Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+                timer3.Enabled = false;
+                oSW.Stop();     //El rejol se detiene
                 this.Hide();
                 trueLevel2 f2 = new trueLevel2();
                 f2.ShowDialog();
@@ -177,6 +183,8 @@ namespace Matching_game
             {
                 Dato.score += 150;
                 Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+                oSW.Stop();     //El rejol se detiene
+                timer3.Enabled = false;
                 this.Hide();
                 trueLevel2 f2 = new trueLevel2();
                 f2.ShowDialog();
@@ -190,6 +198,8 @@ namespace Matching_game
         {
             pictureBox4.Image = Properties.Resources.BlancoRes;
             Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             trueLevel2 f2 = new trueLevel2();
             f2.ShowDialog();
@@ -200,6 +210,8 @@ namespace Matching_game
         {
             pictureBox5.Image = Properties.Resources.BlancoRes;
             Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             trueLevel2 f2 = new trueLevel2();
             f2.ShowDialog();
@@ -210,6 +222,8 @@ namespace Matching_game
         {
             pictureBox6.Image = Properties.Resources.BlancoRes;
             Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             trueLevel2 f2 = new trueLevel2();
             f2.ShowDialog();
@@ -220,6 +234,8 @@ namespace Matching_game
         {
             pictureBox7.Image = Properties.Resources.BlancoRes;
             Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             trueLevel2 f2 = new trueLevel2();
             f2.ShowDialog();
@@ -230,6 +246,8 @@ namespace Matching_game
         {
             pictureBox8.Image = Properties.Resources.BlancoRes;
             Time.timeSeg = Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             trueLevel2 f2 = new trueLevel2();
             f2.ShowDialog();
