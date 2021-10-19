@@ -71,6 +71,8 @@ namespace Matching_game
         {
             pictureBox10.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -81,6 +83,8 @@ namespace Matching_game
         {
             pictureBox11.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -91,6 +95,8 @@ namespace Matching_game
         {
             pictureBox12.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -101,6 +107,8 @@ namespace Matching_game
         {
             pictureBox13.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -111,6 +119,8 @@ namespace Matching_game
         {
             pictureBox14.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -121,6 +131,8 @@ namespace Matching_game
         {
             pictureBox15.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3(); ;
             f3.ShowDialog();
@@ -131,6 +143,8 @@ namespace Matching_game
         {
             pictureBox16.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -146,6 +160,8 @@ namespace Matching_game
             {
                 Dato.score += 150;
                 Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+                oSW.Stop();     //El rejol se detiene
+                timer3.Enabled = false;
                 this.Hide();
                 Level3 f3 = new Level3();
                 f3.ShowDialog();
@@ -161,6 +177,8 @@ namespace Matching_game
         {
             picturebox9.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -175,6 +193,8 @@ namespace Matching_game
             {
                 Dato.score += 150;
                 Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+                oSW.Stop();     //El rejol se detiene
+                timer3.Enabled = false;
                 this.Hide();
                 Level3 f3 = new Level3();
                 f3.ShowDialog();
@@ -189,6 +209,8 @@ namespace Matching_game
         {
             pictureBox5.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -199,6 +221,8 @@ namespace Matching_game
         {
             pictureBox8.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -209,6 +233,8 @@ namespace Matching_game
         {
             pictureBox7.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -219,6 +245,8 @@ namespace Matching_game
         {
             pictureBox6.Image = Properties.Resources.BlancoRes;
             Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+            oSW.Stop();     //El rejol se detiene
+            timer3.Enabled = false;
             this.Hide();
             Level3 f3 = new Level3();
             f3.ShowDialog();
@@ -234,6 +262,8 @@ namespace Matching_game
             {
                 Dato.score += 150;
                 Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+                oSW.Stop();     //El rejol se detiene
+                timer3.Enabled = false;
                 this.Hide();
                 Level3 f3 = new Level3();
                 f3.ShowDialog();
@@ -251,6 +281,8 @@ namespace Matching_game
             {
                 Dato.score += 150;
                 Time.timeSeg += Convert.ToInt32(txtSeg.Text);
+                oSW.Stop();     //El rejol se detiene
+                timer3.Enabled = false;
                 this.Hide();
                 Level3 f3 = new Level3();
                 f3.ShowDialog();
@@ -294,13 +326,14 @@ namespace Matching_game
             Level3 f3 = new Level3();
             TimeSpan ts = new TimeSpan(0, 0, 0, 0, (int)oSW.ElapsedMilliseconds);
             txtSeg.Text = ts.Seconds.ToString().Length < 2 ? "0" + ts.Seconds.ToString() : ts.Seconds.ToString();
-            ////MessageBox.Show(Convert.ToString(Time.timeMin) + " " + Convert.ToString(Time.timeSeg));
-            Time.resSeg = 59 - Time.timeSeg;
-            if (Convert.ToInt32(txtSeg.Text) == Time.resSeg)
+            Time.resSeg = 59 - Time.timeSeg;    //Calculamos a cuanto deberia llegar txtSeg para que se cumplan 59 segundos
+            if (Convert.ToInt32(txtSeg.Text) == Time.resSeg - 1)
             {
+                oSW.Stop();     //El rejol se detiene
+                timer3.Enabled = false;     //Timer3 se detiene
                 this.Hide();
-                //Form3 f8 = new Form3();
-                //f8.ShowDialog();
+                Form3 f8 = new Form3();
+                f8.ShowDialog();
                 this.Close();
             }
 
@@ -315,3 +348,4 @@ namespace Matching_game
         
     }
 }
+
