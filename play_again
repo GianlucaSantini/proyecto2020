@@ -7,15 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
+using System.Diagnostics;   //#
 
 namespace Matching_game
 {
     public partial class Form3 : Form
     {
 
-        //Stopwatch oSW = new Stopwatch();
-
+        Stopwatch oSW = new Stopwatch();    //#
+        
         public Form3()
         {
             InitializeComponent();
@@ -23,15 +23,16 @@ namespace Matching_game
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            //oSW.Start();
-            //oSW.Stop();
-            //MessageBox.Show(Convert.ToString(Dato.score));
+            oSW.Start();    //#
+            timer3.Enabled = true;  //#
             ScoreCounter.Text = Convert.ToString(Convert.ToInt32(ScoreCounter.Text) + Dato.score); //Mostramos en el texto de ScoreCounter el score
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //Cuando se apreta el boton de play again
+
+            timer3.Enabled = false; //#
             Dato.score = 0;     //Retornamos el score de vuelta a 0
             //Cerramos esta pantalla y mostamos form1 (Nivel 1)
             this.Hide();
@@ -39,5 +40,22 @@ namespace Matching_game
             f5.ShowDialog();
             this.Close();
         }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            //Form3 f3 = new Form3();
+            //TimeSpan ts = new TimeSpan(0, 0, 0, 0, (int)oSW.ElapsedMilliseconds);
+            //txtSeg.Text = ts.Seconds.ToString().Length < 2 ? "0" + ts.Seconds.ToString() : ts.Seconds.ToString();
+            ////MessageBox.Show(Convert.ToString(Time.timeMin) + " " + Convert.ToString(Time.timeSeg));
+            //Time.resSeg = 59 - Time.timeSeg;
+            //if (Convert.ToInt32(txtSeg.Text) == Time.resSeg)
+            //{
+            //    this.Hide();
+            //    //Form3 f8 = new Form3();
+            //    //f8.ShowDialog();
+            //    this.Close();
+            //}
+        }
+        
     }
 }
